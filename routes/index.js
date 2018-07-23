@@ -4,9 +4,13 @@ const knex = require('../knex')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  knex('companies')
-  .select(['id', 'name', 'hint'])
-  .then((rows) => res.send(rows))
+  knex('companies').select(['id', 'name', 'hint'])
+    .then((rows) => {
+      console.log(rows)
+      let csv = rows.map(x => `${x.id}|${x.name}|${x.hint}`)
+      console.log(csv);
+      return res.send(rows)
+    })
 })
 
 module.exports = router
