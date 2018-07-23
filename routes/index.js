@@ -6,7 +6,7 @@ const knex = require('../knex')
 router.get('/', function(req, res, next) {
   knex('companies')
   .select(['id', 'name', 'hint'])
-  .then((rows) => res.json(rows))
+  .then((rows) => res.send(rows))
 })
 
 module.exports = router
